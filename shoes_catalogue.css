@@ -1,0 +1,39 @@
+h1{
+  text-align: center;
+  font-size:100px;
+  font-style: oblique;
+  font-weight: 500;
+  color:  #800000;
+  margin-top: 1%;
+  border-radius: 50%;
+  }
+
+ table, th,td {
+  border: solid;
+  border-width: thin;
+  }
+table.theTable{
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+th,td {
+  width: 150px;
+  text-align: center;
+}
+.addbrand{
+  margin-bottom: 10px;
+}
+.addcolor{
+  margin-bottom: 10px;
+}
+.addsize{
+  margin-bottom: 10px;
+}
+.addprice{
+  margin-bottom: 10px;
+}
+.addin_stock{
+  margin-bottom: 10px;
+}

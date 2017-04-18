@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="shoes_catalogue.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.js"></script>
+  <title>shoes catalogue</title>
+</head>
+
+<body>
+  <h1>Shoe Catalogue</h1>
+
+  <script class="dropdownTemp" type="text/x-handlebars-template">
+    <select class="selectBrand">
+   {{#each shoeBrand}}
+     <option> {{this}}</option>
+   {{/each}}
+  </select>
+
+    <select class="selectColor">
+   {{#each shoeColors}}
+     <option class='colorDrop'>{{this}}</option>
+   {{/each}}
+ </select>
+
+    <select class="selectSize">
+   {{#each shoeSize}}
+     <option> {{this}}</option>
+   {{/each}}
+ </select>
+  </script>
+
+  <script class="mytableTem" type="text/x-handlebars-template">
+    <table class="theTable">
+      <thead>
+        <th>Brand</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>In_stock</th>
+      </thead>
+      <tbody>
+        {{#each shoe}}
+        <td>{{brand}}</td>
+        <td>{{color}}</td>
+        <td>{{size}}</td>
+        <td>{{price}}</td>
+        <td>{{in_stock}}</td>
+      </tbody>
+      {{/each}}
+    </table>
+  </script>
+
+  <div class="myDrop">
+
+  </div>
+
+  <div class="addStock">
+    <button class="addingStock" type="button" align="center">Add stock</button>
+    <button class="searchBton"  type="button" >Search</button>
+    <button class="stockshow" type="button" align="center">All stock</button>
+  </div>
+
+  <div class="inputsContainer">
+    <div class="addbrand">
+      <input type="text" class="inbrand" placeholder="Add shoe brand"><br>
+    </div>
+    <div class="addcolor">
+      <input type="text" class="incolor" placeholder="Add shoe color"><br>
+    </div>
+    <div class="addsize">
+      <input type="text" class="insize" placeholder="Add shoe size"><br>
+    </div>
+    <div class="addprice">
+      <input type="text" class="inprice" placeholder="Add shoe price"><br>
+    </div>
+    <div class="addin_stock">
+      <input type="text" class="instock" placeholder="Add shoe in_stock"><br>
+    </div>
+  </div>
+  <div class="outcome">
+
+  </div>
+  <script src="shoes_catalogue.js" charset="utf-8"></script>
+</body>
+
+</html>
