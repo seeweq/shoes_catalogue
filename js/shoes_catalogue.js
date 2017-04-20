@@ -73,7 +73,11 @@ const shoe = [{
   },
 ];
 
-
+var stock = localStorage['stock']
+var Allshoes = shoe
+if (stock){
+  Allshoes = JSON.parse(stock)
+}
 //document.querySelector('.myDrop').innerHTML = drop({shoe:shoe});
 //document.querySelector('.outcome').innerHTML = showTemplate({shoe:shoe});
 
@@ -150,13 +154,10 @@ function myStock(){
   }
   shoe.push(newstock);
 
-  //document.querySelector('.outcome').innerHTML = showTemplate({shoe:shoe});
-  //document.querySelector('.myDrop').innerHTML = drop({shoe:shoe});
-//  showAll(shoe);
+  localStorage['stock'] = JSON.stringify(Allshoes);
 
-
-
-}
+ showAll(shoe);
+};
 
 add.addEventListener('click', myStock);
 showAll(shoe);
