@@ -227,7 +227,6 @@ function showTableData() {
       filteredShoes.push(currentShoe)
       //output.innerHTML = showTemplate({search : search});
     }
-
   }
 
   document.querySelector('.outcome').innerHTML = showTemplate({
