@@ -196,7 +196,6 @@ showAll(shoe);
 
 function showStock() {
 
-
   var brandSelect = document.querySelector('.selectBrand').value;
   var colorSelect = document.querySelector('.selectColor').value;
   var sizeSelect = document.querySelector('.selectSize').value;
