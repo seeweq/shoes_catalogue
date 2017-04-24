@@ -133,8 +133,10 @@ function shoeSizeList(shoes) {
 var outcome = document.querySelector('.outcome');
 var myDrop = document.querySelector('.myDrop');
 
-   myDrop.innerHTML = drop({
-   shoeBrand: brandList(shoes).sort(),
+function showAll(shoes) {
+  myDrop.innerHTML = drop({
+
+    shoeBrand: brandList(shoes).sort(),
     shoeColors: shoeColorList(shoes).sort(),
     shoeSize: shoeSizeList(shoes).sort()
   });
@@ -148,10 +150,7 @@ function myStock() {
   var inprice = document.querySelector('.inprice');
   var instock = document.querySelector('.instock');
   //alert(inbrand.value);
-if (inbrand.value !== ''&&
- incolor.value !== '' &&
- insize.value !== ''&& inprice.value !== ''&&
- instock.value !== ''){
+if (inbrand.value !== ''&& incolor.value !== '' && insize.value !== ''&& inprice.value !== ''&& instock.value !== ''){
 
   var newstock = {
     brand: inbrand.value,
