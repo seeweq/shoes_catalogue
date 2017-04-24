@@ -112,8 +112,7 @@ function shoeColorList(shoes) {
       colorMap[shoe.color] = shoe.color;
       uniqColorList.push(shoe.color);
     }
-
-  }
+   }
   return uniqColorList;
 }
 
@@ -223,9 +222,7 @@ function showTableData() {
       //output.innerHTML = showTemplate({search : search});
     }
 
-  };
-
-  //render the data to the screen
+  }
 
   document.querySelector('.outcome').innerHTML = showTemplate({
     shoe: filteredShoes
