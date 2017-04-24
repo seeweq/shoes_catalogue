@@ -8,7 +8,7 @@ var add = document.querySelector('.addingStock');
 var mySearchBton = document.querySelector('.searchBton');
 var myStockBton = document.querySelector('.stockshow');
 
-const shoe = [{
+var shoe = [{
     brand: 'albano',
     color: 'white',
     size: 3,
@@ -74,36 +74,41 @@ const shoe = [{
 ];
 
 var stock = localStorage['stock']
-var Allshoes = shoe
-if (stock){
-  Allshoes = JSON.parse(stock)
+//var Allshoes = shoe
+if (stock) {
+  shoe = JSON.parse(stock)
 }
+else{
+  localStorage['stock'] = JSON.stringify(shoe);
+}
+
 //document.querySelector('.myDrop').innerHTML = drop({shoe:shoe});
 //document.querySelector('.outcome').innerHTML = showTemplate({shoe:shoe});
 
-function brandList(shoes){
-  var uniqBrandList =[];
-  var brandMap ={};
+function brandList(shoes) {
+  var uniqBrandList = [];
+  var brandMap = {};
 
-  for (var i=0; i < shoes.length; i++){
+  for (var i = 0; i < shoes.length; i++) {
     var shoe = shoes[i];
-    if (brandMap[shoe.brand] === undefined){
+    if (brandMap[shoe.brand] === undefined) {
       brandMap[shoe.brand] = shoe.brand;
       uniqBrandList.push(shoe.brand)
     }
+
   }
   return uniqBrandList;
 }
 
 
-function shoeColorList(shoes){
+function shoeColorList(shoes) {
   //a list of unique colors
-  var uniqColorList =[];
+  var uniqColorList = [];
   var colorMap = {};
 
   for (var i = 0; i < shoes.length; i++) {
-   var shoe = shoes[i];
-    if (colorMap[shoe.color] === undefined){
+    var shoe = shoes[i];
+    if (colorMap[shoe.color] === undefined) {
       colorMap[shoe.color] = shoe.color;
       uniqColorList.push(shoe.color);
     }
@@ -111,14 +116,15 @@ function shoeColorList(shoes){
   }
   return uniqColorList;
 }
-function shoeSizeList(shoes){
-  var uniqSizeList = [];
-  var sizeMap ={};
 
-  for (var i=0; i < shoes.length; i++) {
+function shoeSizeList(shoes) {
+  var uniqSizeList = [];
+  var sizeMap = {};
+
+  for (var i = 0; i < shoes.length; i++) {
     var shoe = shoes[i];
-    if(sizeMap[shoe.size]=== undefined){
-      sizeMap[shoe.size]= shoe.size;
+    if (sizeMap[shoe.size] === undefined) {
+      sizeMap[shoe.size] = shoe.size;
       uniqSizeList.push(shoe.size)
     }
   }
@@ -128,35 +134,55 @@ function shoeSizeList(shoes){
 var outcome = document.querySelector('.outcome');
 var myDrop = document.querySelector('.myDrop');
 
-function showAll(shoes){
+function showAll(shoes) {
   //outcome.innerHTML = showTemplate({shoe:shoes});
   myDrop.innerHTML = drop({
 
-    shoeBrand : brandList(shoes).sort(),
-    shoeColors : shoeColorList(shoes).sort(),
-    shoeSize : shoeSizeList(shoes).sort() });
+    shoeBrand: brandList(shoes).sort(),
+    shoeColors: shoeColorList(shoes).sort(),
+    shoeSize: shoeSizeList(shoes).sort()
+  });
 }
 
 
-function myStock(){
+function myStock() {
   var inbrand = document.querySelector('.inbrand');
   var incolor = document.querySelector('.incolor');
   var insize = document.querySelector('.insize');
   var inprice = document.querySelector('.inprice');
   var instock = document.querySelector('.instock');
-//alert(inbrand.value);
-  var newstock ={
-      brand:inbrand.value,
-      color:incolor.value,
-      size: insize.value,
-      price:inprice.value,
-      in_stock: instock.value
-  }
-  shoe.push(newstock);
+  //alert(inbrand.value);
 
-  localStorage['stock'] = JSON.stringify(Allshoes);
+  var newstock = {
+    brand: inbrand.value,
+    color: incolor.value,
+    size: Number(insize.value),
+    price: inprice.value,
+    in_stock: Number(instock.value)
+  };
 
- showAll(shoe);
+  var existingShoe = false;
+
+  for (var i = 0; i < shoe.length; i++) {
+    var currentShoe = shoe[i];
+
+    if (currentShoe.brand === newstock.brand &&
+      currentShoe.color === newstock.color &&
+      currentShoe.size === newstock.size) {
+      var shoeInStock = currentShoe;
+      shoeInStock.in_stock += newstock.in_stock;
+      existingShoe = true;
+      break;
+    }
+  };
+
+  if (!existingShoe) {
+    shoe.push(newstock);
+  };
+
+  localStorage['stock'] = JSON.stringify(shoe);
+
+  showAll(shoe);
 };
 
 add.addEventListener('click', myStock);
@@ -170,7 +196,7 @@ function showStock() {
   var colorSelect = document.querySelector('.selectColor').value;
   var sizeSelect = document.querySelector('.selectSize').value;
 
-    document.querySelector('.outcome').innerHTML  = showTemplate({
+  document.querySelector('.outcome').innerHTML = showTemplate({
     shoe: shoe
   });
 };
@@ -189,10 +215,10 @@ function showTableData() {
 
     var currentShoe = shoe[i];
 
-    if (brandSelect.toLowerCase() === currentShoe.brand.toLowerCase()
-    && colorSelect.toLowerCase() === currentShoe.color
-    && Number(sizeSelect) === currentShoe.size
-  ) {
+    if (brandSelect.toLowerCase() === currentShoe.brand.toLowerCase() &&
+      colorSelect.toLowerCase() === currentShoe.color &&
+      Number(sizeSelect) === currentShoe.size
+    ) {
       filteredShoes.push(currentShoe)
       //output.innerHTML = showTemplate({search : search});
     }
@@ -201,7 +227,7 @@ function showTableData() {
 
   //render the data to the screen
 
-  document.querySelector('.outcome').innerHTML = showTemplate ({
+  document.querySelector('.outcome').innerHTML = showTemplate({
     shoe: filteredShoes
   });
 };
