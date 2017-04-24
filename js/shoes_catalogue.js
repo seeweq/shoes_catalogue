@@ -193,6 +193,7 @@ add.addEventListener('click', myStock);
 showAll(shoe);
 
 
+
 function showStock() {
 
   var brandSelect = document.querySelector('.selectBrand').value;
@@ -229,5 +230,6 @@ function showTableData() {
     shoe: filteredShoes
   });
 };
+
 
 mySearchBton.addEventListener('click', showTableData)
