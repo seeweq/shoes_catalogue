@@ -151,6 +151,7 @@ function myStock() {
   var inprice = document.querySelector('.inprice');
   var instock = document.querySelector('.instock');
   //alert(inbrand.value);
+if (inbrand.value !== ''&& incolor.value !== '' && insize.value !== ''&& inprice.value !== ''&& instock.value !== ''){
 
   var newstock = {
     brand: inbrand.value,
@@ -159,7 +160,7 @@ function myStock() {
     price: inprice.value,
     in_stock: Number(instock.value)
   };
-
+}
   var existingShoe = false;
 
   for (var i = 0; i < shoe.length; i++) {
@@ -173,6 +174,11 @@ function myStock() {
       existingShoe = true;
       break;
     }
+  inbrand.value = '';
+  incolor.value = '';
+  insize.value = '';
+  inprice.value = '';
+  instock.value = ''
   };
 
   if (!existingShoe) {
