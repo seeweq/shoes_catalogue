@@ -134,7 +134,6 @@ var outcome = document.querySelector('.outcome');
 var myDrop = document.querySelector('.myDrop');
 
 function showAll(shoes) {
-  //outcome.innerHTML = showTemplate({shoe:shoes});
   myDrop.innerHTML = drop({
 
     shoeBrand: brandList(shoes).sort(),
@@ -213,8 +212,6 @@ function showTableData() {
   var sizeSelect = document.querySelector('.selectSize').value;
   var filteredShoes = [];
 
-  //find the data you need
-
   for (var i = 0; i < shoe.length; i++) {
 
     var currentShoe = shoe[i];
@@ -224,7 +221,7 @@ function showTableData() {
       Number(sizeSelect) === currentShoe.size
     ) {
       filteredShoes.push(currentShoe)
-      //output.innerHTML = showTemplate({search : search});
+
     }
   }
 
