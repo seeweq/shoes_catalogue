@@ -152,6 +152,7 @@ function myStock() {
   //alert(inbrand.value);
 if (inbrand.value !== ''&& incolor.value !== '' && insize.value !== ''&& inprice.value !== ''&& instock.value !== ''){
 
+
   var newstock = {
     brand: inbrand.value,
     color: incolor.value,
@@ -159,6 +160,7 @@ if (inbrand.value !== ''&& incolor.value !== '' && insize.value !== ''&& inprice
     price: inprice.value,
     in_stock: Number(instock.value)
   };
+
 }
   var existingShoe = false;
 
@@ -183,7 +185,9 @@ if (inbrand.value !== ''&& incolor.value !== '' && insize.value !== ''&& inprice
   if (!existingShoe) {
     shoe.push(newstock);
   };
-
+  document.querySelector('.outcome').innerHTML = showTemplate({
+    shoe : shoe
+  });
   localStorage['stock'] = JSON.stringify(shoe);
 
   showAll(shoe);
@@ -195,9 +199,9 @@ showAll(shoe);
 
 function showStock() {
 
-  var brandSelect = document.querySelector('.selectBrand').value;
-  var colorSelect = document.querySelector('.selectColor').value;
-  var sizeSelect = document.querySelector('.selectSize').value;
+  // var brandSelect = document.querySelector('.selectBrand').value;
+  // var colorSelect = document.querySelector('.selectColor').value;
+  // var sizeSelect = document.querySelector('.selectSize').value;
 
   document.querySelector('.outcome').innerHTML = showTemplate({
     shoe: shoe
@@ -216,8 +220,8 @@ function showTableData() {
 
     var currentShoe = shoe[i];
 
-    if (brandSelect.toLowerCase() === currentShoe.brand.toLowerCase() &&
-      colorSelect.toLowerCase() === currentShoe.color &&
+    if (brandSelect.toLowerCase() === currentShoe.brand.toLowerCase() ||
+      colorSelect.toLowerCase() === currentShoe.color ||
       Number(sizeSelect) === currentShoe.size
     ) {
       filteredShoes.push(currentShoe)
